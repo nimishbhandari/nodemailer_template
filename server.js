@@ -1,7 +1,10 @@
 import express from "express";
 import mailRoute from "./routes/mailRoute.js";
+import dotenv from "dotenv";
 
 const app = express();
+
+dotenv.config();
 
 app.get("/", (req, res) => {
   res.send("API is running");
@@ -9,6 +12,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/mail", mailRoute);
 
-app.listen(5000, () => {
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
   console.log("Server Started....");
 });
